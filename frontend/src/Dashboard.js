@@ -11,11 +11,20 @@ function Dashboard() {
           <div>
             <p>{book.name}</p>
             {/*<p>{book.numChapters}</p>*/}
-            <ButtonGroup size="small">
-            {book.numChapters && Array.from({ length: book.numChapters }, (_, i) =>
-                <Button key={i}>{i}</Button>
+            {book.numChapters && Array.from({ length: Math.ceil(book.numChapters / 20) }, (_, i_20) =>
+                <div>
+                  <ButtonGroup size="small">
+                    {book.numChapters && Array.from({ length: Math.min(20,book.numChapters-i_20*20) }, (_, i) =>
+                        <Button key={i+1+i_20*20}>{i+1+i_20*20}</Button>
+                    )}
+                  </ButtonGroup>
+                </div>
             )}
-            </ButtonGroup>
+            {/*<ButtonGroup size="small">*/}
+            {/*{book.numChapters && Array.from({ length: book.numChapters }, (_, i) =>*/}
+            {/*    <Button key={i}>{i}</Button>*/}
+            {/*)}*/}
+            {/*</ButtonGroup>*/}
           </div>
       )}
 
