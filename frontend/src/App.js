@@ -1,11 +1,17 @@
-import logo from './logo.svg';
 import './App.css';
 import Dashboard from "./Dashboard";
+import {Box} from "@mui/material";
 
 function App() {
   return (
     <div className="App">
-      <Dashboard/>
+        <Box sx={{
+            padding: '20px',
+            margin: 'auto',
+            maxWidth: '1800px'
+        }}>
+            <Dashboard/>
+        </Box>
     </div>
   );
 }

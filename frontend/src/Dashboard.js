@@ -2,11 +2,24 @@ import './App.css';
 import { BOOKS } from './bible/constants.ts';
 import Button from '@mui/material/Button';
 import {useEffect, useState} from "react";
+import {Grid} from "@mui/material";
+
+// const Item = styled(Paper)(({ theme }) => ({
+//     backgroundColor: '#fff',
+//     ...theme.typography.body2,
+//     padding: theme.spacing(1),
+//     textAlign: 'center',
+//     color: theme.palette.text.secondary,
+//     ...theme.applyStyles('dark', {
+//         backgroundColor: '#1A2027',
+//     }),
+// }));
+const BOOKS1 = BOOKS.slice(0,26);
+const BOOKS2 = BOOKS.slice(26,BOOKS.length);
 
 function Dashboard() {
 
     const [readStatus, setReadStatus] = useState({});
-
 
     useEffect(() => {
         const readStatus = {}
@@ -42,32 +55,81 @@ function Dashboard() {
         return isRead? "success" : "neutral";
     };
 
+
   return (
       <div>
-          <p>{readStatus["Genesis_1"]}</p>
-          <p>{readStatus["Genesis_2"]}</p>
-          {BOOKS && BOOKS.map(book =>
-              <div>
-                  <p>{book.name}</p>
-                      {Array.from({length: Math.ceil(book.numChapters)}, (_, i) =>
-                          {
-                              const chapterNum = i + 1;
-                              const chapterKey = book.name + "_" + chapterNum;
-                              return <Button
-                                  key={chapterKey}
-                                  size="small"
-                                  variant={getButtonVariant(chapterKey)}
-                                  color={getButtonColor(chapterKey)}
-                                  disableElevation
-                                  sx={{
-                                      minWidth: 42.81,
-                                  }}
-                                  onClick={event => toggleRead(event, chapterKey)}>{chapterNum}</Button>
+          <Grid container spacing={2}>
+              <Grid item xs={6}>
+                  {BOOKS1 && BOOKS1.map(book =>
+                      <div>
+                          <p>{book.name}</p>
+                          {Array.from({length: Math.ceil(book.numChapters)}, (_, i) =>
+                              {
+                                  const chapterNum = i + 1;
+                                  const chapterKey = book.name + "_" + chapterNum;
+                                  return <Button
+                                      key={chapterKey}
+                                      size="small"
+                                      variant={getButtonVariant(chapterKey)}
+                                      color={getButtonColor(chapterKey)}
+                                      disableElevation
+                                      sx={{
+                                          minWidth: 42.81,
+                                      }}
+                                      onClick={event => toggleRead(event, chapterKey)}>{chapterNum}</Button>
 
-                          }
-                      )}
-              </div>
-          )}
+                              }
+                          )}
+                      </div>
+                  )}
+              </Grid>
+              <Grid item xs={6}>
+                  {BOOKS2 && BOOKS2.map(book =>
+                      <div>
+                          <p>{book.name}</p>
+                          {Array.from({length: Math.ceil(book.numChapters)}, (_, i) =>
+                              {
+                                  const chapterNum = i + 1;
+                                  const chapterKey = book.name + "_" + chapterNum;
+                                  return <Button
+                                      key={chapterKey}
+                                      size="small"
+                                      variant={getButtonVariant(chapterKey)}
+                                      color={getButtonColor(chapterKey)}
+                                      disableElevation
+                                      sx={{
+                                          minWidth: 42.81,
+                                      }}
+                                      onClick={event => toggleRead(event, chapterKey)}>{chapterNum}</Button>
+
+                              }
+                          )}
+                      </div>
+                  )}
+              </Grid>
+          </Grid>
+          {/*{BOOKS && BOOKS.map(book =>*/}
+          {/*    <div>*/}
+          {/*        <p>{book.name}</p>*/}
+          {/*            {Array.from({length: Math.ceil(book.numChapters)}, (_, i) =>*/}
+          {/*                {*/}
+          {/*                    const chapterNum = i + 1;*/}
+          {/*                    const chapterKey = book.name + "_" + chapterNum;*/}
+          {/*                    return <Button*/}
+          {/*                        key={chapterKey}*/}
+          {/*                        size="small"*/}
+          {/*                        variant={getButtonVariant(chapterKey)}*/}
+          {/*                        color={getButtonColor(chapterKey)}*/}
+          {/*                        disableElevation*/}
+          {/*                        sx={{*/}
+          {/*                            minWidth: 42.81,*/}
+          {/*                        }}*/}
+          {/*                        onClick={event => toggleRead(event, chapterKey)}>{chapterNum}</Button>*/}
+
+          {/*                }*/}
+          {/*            )}*/}
+          {/*    </div>*/}
+          {/*)}*/}
 
       </div>
   );
