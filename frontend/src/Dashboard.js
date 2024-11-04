@@ -1,8 +1,8 @@
 import './App.css';
 import { BOOKS } from './bible/constants.ts';
-import Button from '@mui/material/Button';
 import {useEffect, useState} from "react";
 import {Grid} from "@mui/material";
+import BookRecord from "./BookRecord";
 
 // const Item = styled(Paper)(({ theme }) => ({
 //     backgroundColor: '#fff',
@@ -32,79 +32,37 @@ function Dashboard() {
         setReadStatus(readStatus);
     }, [])
 
-    const toggleRead = (event, chapterKey) => {
-        const currentRead = readStatus[chapterKey];
-        const newRead = !currentRead;
-        const newReadStatus = {...readStatus};
-        newReadStatus[chapterKey] = newRead;
-        setReadStatus(newReadStatus);
-        localStorage.setItem(chapterKey, JSON.stringify(newRead));
-    };
-
-    const getReadStatus = (chapterKey) => {
-        return readStatus[chapterKey];
-    };
-
-    const getButtonVariant = (chapterKey) => {
-        let isRead = getReadStatus(chapterKey);
-        return isRead? "contained" : "outlined";
-    };
-
-    const getButtonColor = (chapterKey) => {
-        let isRead = getReadStatus(chapterKey);
-        return isRead? "success" : "neutral";
-    };
-
-
   return (
       <div>
           <Grid container spacing={2}>
               <Grid item xs={6}>
-                  {BOOKS1 && BOOKS1.map(book =>
-                      <div>
-                          <p>{book.name}</p>
-                          {Array.from({length: Math.ceil(book.numChapters)}, (_, i) =>
-                              {
-                                  const chapterNum = i + 1;
-                                  const chapterKey = book.name + "_" + chapterNum;
-                                  return <Button
-                                      key={chapterKey}
-                                      size="small"
-                                      variant={getButtonVariant(chapterKey)}
-                                      color={getButtonColor(chapterKey)}
-                                      disableElevation
-                                      sx={{
-                                          minWidth: 42.81,
-                                      }}
-                                      onClick={event => toggleRead(event, chapterKey)}>{chapterNum}</Button>
-
-                              }
-                          )}
-                      </div>
+                  {BOOKS1.map(book =>
+                      <BookRecord key={book.name} book={book} readStatus={readStatus} setReadStatus={setReadStatus}/>
                   )}
               </Grid>
               <Grid item xs={6}>
-                  {BOOKS2 && BOOKS2.map(book =>
-                      <div>
-                          <p>{book.name}</p>
-                          {Array.from({length: Math.ceil(book.numChapters)}, (_, i) =>
-                              {
-                                  const chapterNum = i + 1;
-                                  const chapterKey = book.name + "_" + chapterNum;
-                                  return <Button
-                                      key={chapterKey}
-                                      size="small"
-                                      variant={getButtonVariant(chapterKey)}
-                                      color={getButtonColor(chapterKey)}
-                                      disableElevation
-                                      sx={{
-                                          minWidth: 42.81,
-                                      }}
-                                      onClick={event => toggleRead(event, chapterKey)}>{chapterNum}</Button>
-
-                              }
-                          )}
-                      </div>
+                  {BOOKS2.map(book =>
+                       <BookRecord key={book.name} book={book} readStatus={readStatus} setReadStatus={setReadStatus}/>
+                      // <div>
+                      //     <p>{book.name}</p>
+                      //     {Array.from({length: Math.ceil(book.numChapters)}, (_, i) =>
+                      //         {
+                      //             const chapterNum = i + 1;
+                      //             const chapterKey = book.name + "_" + chapterNum;
+                      //             return <Button
+                      //                 key={chapterKey}
+                      //                 size="small"
+                      //                 variant={getButtonVariant(chapterKey)}
+                      //                 color={getButtonColor(chapterKey)}
+                      //                 disableElevation
+                      //                 sx={{
+                      //                     minWidth: 42.81,
+                      //                 }}
+                      //                 onClick={event => toggleRead(event, chapterKey)}>{chapterNum}</Button>
+                      //
+                      //         }
+                      //     )}
+                      // </div>
                   )}
               </Grid>
           </Grid>
