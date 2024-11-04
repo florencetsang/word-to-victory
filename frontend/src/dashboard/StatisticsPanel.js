@@ -15,7 +15,7 @@ export default function StatisticsPanel(props) {
     const percentage = numChaptersRead / toalChapters * 100;
     return (
         <Box>
-            <p>Number of Chapters read: {numChaptersRead}</p>
+            <p>{numChaptersRead} of {toalChapters} chapters read</p>
             <div style={{width: 200, height: 200}}>
                 <CircularProgressbar value={percentage} text={`${percentage.toFixed(1)}%`}/>
             </div>

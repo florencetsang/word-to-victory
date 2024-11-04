@@ -30,7 +30,8 @@ export default function BookRecord(props) {
 
     const getButtonColor = (chapterKey) => {
         let isRead = getReadStatus(chapterKey);
-        return isRead? "success" : "neutral";
+        // return isRead? "primary" : "neutral";
+        return "primary";
     };
 
   return (
